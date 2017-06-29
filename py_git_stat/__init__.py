@@ -30,3 +30,4 @@ def py_git_stat():
 
     for status_result in status_results:
         print status_result
+

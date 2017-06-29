@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(name='py_git_stat',
       entry_points = {
-          'conosole_scripts': ['py_git_stat=py_git_stat.command_line:main'],
+          'console_scripts': ['py_git_stat=py_git_stat.command_line:main'],
       },
       version='0.1',
       description='Uses Python to get the status of all git repositories in the current working directory and pretty-print it in the CLI',
