@@ -26,7 +26,7 @@ def py_git_stat():
     for git_repo in git_repos:
         os.chdir(str(git_repo.resolve()))
         result = subprocess.check_output(['git', 'status'])
-        status_results.append((git_repo.name, result))
+        status_results.append((git_repo.name, result.split('\n')))
 
     for status_result in status_results:
         print status_result
