@@ -1,6 +1,6 @@
 import os
 from pathlib2 import Path
-
+import subprocess
 
 def py_git_stat():
     # get the current working directory
@@ -18,4 +18,15 @@ def py_git_stat():
         if q.exists():
             git_repos.append(subdir)
 
-    print git_repos
+
+    # now that we have only top-level git repos, let's execute git status on all of them, then store the
+    # command output
+
+    status_results = []
+    for git_repo in git_repos:
+        os.chdir(str(git_repo.resolve()))
+        result = subprocess.check_output(['git', 'status'])
+        status_results.append((git_repo.name, result))
+
+    for status_result in status_results:
+        print status_result
