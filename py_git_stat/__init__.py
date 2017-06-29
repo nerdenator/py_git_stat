@@ -1,20 +1,21 @@
 import os
+from pathlib2 import Path
+
 
 def py_git_stat():
     # get the current working directory
-    cwd = os.listdir(os.getcwd())
+    cwd = os.getcwd()
+    # status messages are friends not food
+    print ('Listing git statuses for ' + cwd)
+    # set up Path object in cwd to start workin'
+    p = Path(cwd)
+    # get subdirs of the cwd
+    subdirs = [item for item in p.iterdir() if item.is_dir()]
+    # then, see if each subdir contains ".git" and put it in git_repos list
+    git_repos = []
+    for subdir in subdirs:
+        q = subdir / '.git'
+        if q.exists():
+            git_repos.append(subdir)
 
-    # and make a second list once we narrow the contents down
-    cwd_dirs = []
-    for item in cwd:
-        if os.path.isdir(item):
-            cwd_dirs.append(item)
-
-
-    for dir_item in cwd_dirs:
-        print(os.path.abspath(item))
-    # now, search the cwd_dirs for ones that have .git as a subdirectory
-
-
-
-
+    print git_repos
