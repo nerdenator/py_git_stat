@@ -31,15 +31,19 @@ def py_git_stat():
         status_results.update({git_repo.name: result.split('\n')})
 
     # let's print out some headers for the table. first, get width of the terminal
-    term_width = get_terminal_size()[0]
+    if get_terminal_size()[0] != 0:
+        term_width = get_terminal_size()[0]
+    else:
+        term_width = 80
+
     # print out that many characters
     print '-' * term_width
 
     # let's get the longest repo name and make that the width of the first column in the table.
     longest = len(max(status_results, key=len))
+    longest_repo_branch = len(max(status_results.values(), key=len))
+    print '{0: <{longest}}|{1}'.format('git repository', 'repo branch',longest=longest)
 
-
-
-    for status_result in status_results:
-        print status_result
+    for repo_name, repo_info in status_results.iteritems():
+        print repo_name
 
