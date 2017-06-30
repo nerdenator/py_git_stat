@@ -36,6 +36,8 @@ def py_git_stat():
     print '-' * term_width
 
     # let's get the longest repo name and make that the width of the first column in the table.
+    longest = len(max(status_results, key=len))
+
 
 
     for status_result in status_results:
