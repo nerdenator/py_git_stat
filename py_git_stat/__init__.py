@@ -35,14 +35,23 @@ def py_git_stat():
     else:
         term_width = 80
 
-    # print out that many characters
-    print('-' * term_width)
+    print_row_separators(term_width)
 
     # let's get the longest repo name and make that the width of the first column in the table.
     longest = (len(max(status_results, key=len)))+1
     longest_repo_branch = (len(max(status_results.values()[1], key=len)))+1
     print('{0: <{longest}}|{1}'.format('git repository', 'repo branch', longest=longest))
-    print('-' * term_width)
+    print_row_separators(term_width)
     for repo_name, repo_info in status_results.iteritems():
         print ('{0: <{longest}}|{1: <{longest_repo_branch}}'.format(repo_name, repo_info[0], longest=longest,
                                                                     longest_repo_branch=longest_repo_branch))
+
+
+def print_row_separators(term_size):
+    """
+    prints a long line of '-' characters to separate parts of the table.
+    :param term_size: the terminal width as determined by get_terminal_size()[0]
+    :return: None
+    """
+    # print out that many characters
+    print('-' * term_size)
