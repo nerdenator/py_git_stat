@@ -41,9 +41,9 @@ def py_git_stat():
 
     # let's get the longest repo name and make that the width of the first column in the table.
     longest = len(max(status_results, key=len))
-    longest_repo_branch = len(max(status_results.values(), key=len))
+    longest_repo_branch = len(max(status_results.values()[1], key=len))
     print '{0: <{longest}}|{1}'.format('git repository', 'repo branch',longest=longest)
 
     for repo_name, repo_info in status_results.iteritems():
-        print repo_name
+        print '{0: <{longest}}|{1: <{longest_repo_branch}}'.format(repo_name, repo_info[0], longest=longest, longest_repo_branch=longest_repo_branch)
 
