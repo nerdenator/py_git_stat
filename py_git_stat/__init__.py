@@ -28,7 +28,7 @@ def py_git_stat():
     for git_repo in git_repos:
         os.chdir(str(git_repo.resolve()))
         result = subprocess.check_output(['git', 'status'])
-        status_results.append({git_repo.name, result})
+        status_results.update({git_repo.name, result})
 
     # let's print out some headers for the table. first, get width of the terminal
     term_width = get_terminal_size()[0]
